@@ -22,4 +22,5 @@ Assigned different users and groups to multiple files successfully.
 
 ## Learning Outcome
 I understand Linux file ownership and can manage users and groups confidently.
-![All Images](task/)
+![Day 11 Task](task/day11-task-1.png)
+
