@@ -1,4 +1,4 @@
-# Day 22 – Introduction to Git: My First Repository
+# Day 22 – Introduction to Git
 
 ## Overview
 
