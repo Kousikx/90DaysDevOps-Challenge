@@ -1,57 +1,89 @@
-Day 30 – Docker Images & Container Lifecycle
-Task
-Today's goal is to understand how images and containers actually work.
+# Day 30 – Docker Images & Container Lifecycle
 
-You will:
+## Docker Images
 
-Learn the relationship between images and containers
-Understand image layers and caching
-Master the full container lifecycle
-Expected Output
-A markdown file: day-30-images.md
-Screenshots of key commands
-Challenge Tasks
-Task 1: Docker Images
-Pull the nginx, ubuntu, and alpine images from Docker Hub
-List all images on your machine — note the sizes
-Compare ubuntu vs alpine — why is one much smaller?
-Inspect an image — what information can you see?
-Remove an image you no longer need
-Task 2: Image Layers
-Run docker image history nginx — what do you see?
-Each line is a layer. Note how some layers show sizes and some show 0B
-Write in your notes: What are layers and why does Docker use them?
-Task 3: Container Lifecycle
-Practice the full lifecycle on one container:
+Pulled:
+- nginx
+- ubuntu
+- alpine
 
-Create a container (without starting it)
-Start the container
-Pause it and check status
-Unpause it
-Stop it
-Restart it
-Kill it
-Remove it
-Check docker ps -a after each step — observe the state changes.
+Compared sizes:
+Alpine is much smaller because it is minimal and lightweight.
+Ubuntu includes full libraries and utilities.
 
-Task 4: Working with Running Containers
-Run an Nginx container in detached mode
-View its logs
-View real-time logs (follow mode)
-Exec into the container and look around the filesystem
-Run a single command inside the container without entering it
-Inspect the container — find its IP address, port mappings, and mounts
-Task 5: Cleanup
-Stop all running containers in one command
-Remove all stopped containers in one command
-Remove unused images
-Check how much disk space Docker is using
-Hints
-Image history: docker image history
-Create without starting: docker create
-Follow logs: docker logs -f
-Inspect: docker inspect
-Cleanup: docker system df, docker system prune
-Submission
-Add your day-30-images.md to 2026/day-30/
-Commit and push to your fork
+Used:
+docker images
+docker inspect
+docker rmi
+
+---
+
+## Image Layers
+
+Checked:
+docker image history nginx
+
+Each line represents a layer.
+Layers are immutable and cached.
+Docker reuses layers across images to save space.
+
+0B layers usually represent metadata instructions.
+
+---
+
+## Container Lifecycle
+
+Practiced:
+docker create
+docker start
+docker pause
+docker unpause
+docker stop
+docker restart
+docker kill
+docker rm
+
+Observed state changes:
+Created → Running → Paused → Exited → Removed
+
+---
+
+## Working with Running Containers
+
+Ran nginx in detached mode.
+
+Viewed logs:
+docker logs
+docker logs -f
+
+Executed commands:
+docker exec -it
+docker exec
+
+Inspected container:
+docker inspect
+
+Found:
+- Container IP
+- Port mappings
+- Network settings
+
+---
+
+## Cleanup Commands
+
+Stopped all containers.
+Removed stopped containers.
+Pruned unused images.
+Checked disk usage using:
+docker system df
+
+---
+
+## What I Learned
+
+- Images are blueprints.
+- Containers are running instances.
+- Docker uses layered filesystem.
+- Containers have lifecycle states.
+- Proper cleanup prevents disk waste.
