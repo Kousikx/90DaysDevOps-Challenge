@@ -1,0 +1,3 @@
+FROM ubuntu
+RUN apt update && apt install -y curl 
+CMD ["echo", "Hello from my custom images!"]
