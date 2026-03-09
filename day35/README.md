@@ -1,55 +1,73 @@
-Day 35 – Multi-Stage Builds & Docker Hub
-Task
-Today's goal is to build optimized images and share them with the world.
+# Day 35 – Multi-Stage Builds & Docker Hub
 
-Multi-stage builds are how real teams ship small, secure images. Docker Hub is how you distribute them. Both are interview favourites.
+## Task 1 – Large Image Problem
 
-Expected Output
-A markdown file: day-35-multistage-hub.md
-Dockerfiles demonstrating multi-stage builds
-An image pushed to your Docker Hub account
-Challenge Tasks
-Task 1: The Problem with Large Images
-Write a simple Go, Java, or Node.js app (even a "Hello World" is fine)
-Create a Dockerfile that builds and runs it in a single stage
-Build the image and check its size
-Note down the size — you'll compare it later.
+Created a Node.js application and built a Docker image using a single-stage Dockerfile.
 
-Task 2: Multi-Stage Build
-Rewrite the Dockerfile using multi-stage build:
-Stage 1: Build the app (install dependencies, compile)
-Stage 2: Copy only the built artifact into a minimal base image (alpine, distroless, or scratch)
-Build the image and check its size again
-Compare the two sizes
-Write in your notes: Why is the multi-stage image so much smaller?
+The image size was large because it contained build tools, dependencies, and runtime components.
 
-Task 3: Push to Docker Hub
-Create a free account on Docker Hub (if you don't have one)
-Log in from your terminal
-Tag your image properly: yourusername/image-name:tag
-Push it to Docker Hub
-Pull it on a different machine (or after removing locally) to verify
-Task 4: Docker Hub Repository
-Go to Docker Hub and check your pushed image
-Add a description to the repository
-Explore the tags tab — understand how versioning works
-Pull a specific tag vs latest — what happens?
-Task 5: Image Best Practices
-Apply these to one of your images and rebuild:
+---
 
-Use a minimal base image (alpine vs ubuntu — compare sizes)
-Don't run as root — add a non-root USER in your Dockerfile
-Combine RUN commands to reduce layers
-Use specific tags for base images (not latest)
-Check the size before and after.
+## Task 2 – Multi-Stage Build
 
-Hints
-Multi-stage: use FROM ... AS builder then COPY --from=builder
-Login: docker login
-Tag: docker tag local-image:tag username/repo:tag
-Push: docker push username/repo:tag
-Non-root user: RUN adduser + USER
-Submission
-Add your Dockerfiles and day-35-multistage-hub.md to 2026/day-35/
-Include the link to your Docker Hub repo
-Commit and push to your fork
+Implemented a multi-stage Dockerfile:
+
+Stage 1: Builder image to install dependencies and prepare the app  
+Stage 2: Minimal runtime image using node:alpine
+
+Only the necessary application files were copied to the final image.
+
+This significantly reduced the image size.
+
+---
+
+## Task 3 – Docker Hub Push
+
+Logged into Docker Hub using:
+
+docker login
+
+Tagged the image:
+
+docker tag node-multistage:v1 <dockerhub-username>/node-multistage:v1
+
+Pushed the image:
+
+docker push <dockerhub-username>/node-multistage:v1
+
+Verified by pulling the image from Docker Hub.
+
+Docker Hub Repository:
+https://hub.docker.com/r/<dockerhub-username>/node-multistage
+
+---
+
+## Task 4 – Tags and Versioning
+
+Docker images can have multiple tags such as:
+
+v1
+v2
+latest
+
+Pulling without specifying a tag defaults to the latest version.
+
+---
+
+## Task 5 – Image Best Practices
+
+Applied best practices:
+
+- Used minimal base image (node:alpine)
+- Added non-root user for security
+- Combined commands to reduce layers
+- Used specific version tags
+
+---
+
+## What I Learned
+
+- Multi-stage builds reduce image size significantly.
+- Docker Hub allows sharing container images publicly.
+- Proper tagging helps manage versions.
+- Using minimal images improves security and performance.
