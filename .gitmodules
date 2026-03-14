@@ -1,0 +1,6 @@
+[submodule "github-action-practice/Github-Action-Practice"]
+	path = github-action-practice/Github-Action-Practice
+	url = git@github.com:Kousikx/Github-Action-Practice.git
+[submodule "Github-Action-Practice"]
+	path = Github-Action-Practice
+	url = git@github.com:Kousikx/Github-Action-Practice.git
