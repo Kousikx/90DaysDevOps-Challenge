@@ -1,0 +1,21 @@
+---
+server:
+ name: dev-server
+ ip: 192.168.1.10
+ port: 8080
+
+database:
+ host: db-server
+ name: devops_db
+ credentials:
+  user: admin
+  password: test@123
+
+startup_script_literal: |
+ echo "Starting server"
+ systemctl start nginx
+ echo "Server started"
+startup_script_folded: >
+ echo "Starting server"
+ systemctl start nginx
+ echo "Server started"
