@@ -1,0 +1,17 @@
+kind: Namespace
+apiVersion: v1
+
+metadata:
+  name: flask-app-ns
+
+---
+kind: Namespace
+apiVersion: v1    
+metadata:
+  name: flask-app-ns2
+---
+kind: Namespace
+apiVersion: v1    
+metadata:
+  name: flask-app-ns3
+

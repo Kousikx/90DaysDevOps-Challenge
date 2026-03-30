@@ -1,0 +1,14 @@
+kind: Service
+apiVersion: v1
+
+metadata:
+  name: flask-service
+  namespace: flask-app-ns
+
+
+
+spec:
+  selector:
+    app: flask-app-label
+
+
